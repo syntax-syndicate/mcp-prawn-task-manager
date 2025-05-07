@@ -2,7 +2,7 @@
 
 
 
-    ![Logo](./logo.png)
+  ![Logo](https://raw.githubusercontent.com/mi4uu/mcp-prawn-task-manager/refs/heads/main/logo.png)
 
 
 all non english instruction, descriptions, removed, what was missing in translation is now translated. no more tasks generated in language that i have no idea how to read. 🤷🏻‍♀️
