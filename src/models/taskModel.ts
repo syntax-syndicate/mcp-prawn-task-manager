@@ -533,7 +533,7 @@ export async function deleteTask(
   return { success: true, message: "Task deleted successfully" };
 }
 
-// 評估任務複雜度
+// Assess task complexity
 export async function assessTaskComplexity(
   taskId: string
 ): Promise<TaskComplexityAssessment | null> {
@@ -543,16 +543,16 @@ export async function assessTaskComplexity(
     return null;
   }
 
-  // 評估各項指標
+  // Evaluate various metrics
   const descriptionLength = task.description.length;
   const dependenciesCount = task.dependencies.length;
   const notesLength = task.notes ? task.notes.length : 0;
   const hasNotes = !!task.notes;
 
-  // 基於各項指標評估複雜度級別
+  // Assess complexity level based on various metrics
   let level = TaskComplexityLevel.LOW;
 
-  // 描述長度評估
+  // Description length assessment
   if (
     descriptionLength >= TaskComplexityThresholds.DESCRIPTION_LENGTH.VERY_HIGH
   ) {
@@ -567,7 +567,7 @@ export async function assessTaskComplexity(
     level = TaskComplexityLevel.MEDIUM;
   }
 
-  // 依賴數量評估（取最高級別）
+  // Dependency count assessment (take highest level)
   if (
     dependenciesCount >= TaskComplexityThresholds.DEPENDENCIES_COUNT.VERY_HIGH
   ) {
@@ -585,7 +585,7 @@ export async function assessTaskComplexity(
     level = TaskComplexityLevel.MEDIUM;
   }
 
-  // 注記長度評估（取最高級別）
+  // Notes length assessment (take highest level)
   if (notesLength >= TaskComplexityThresholds.NOTES_LENGTH.VERY_HIGH) {
     level = TaskComplexityLevel.VERY_HIGH;
   } else if (
@@ -644,12 +644,12 @@ export async function assessTaskComplexity(
       descriptionLength >= TaskComplexityThresholds.DESCRIPTION_LENGTH.VERY_HIGH
     ) {
       recommendations.push(
-        "任務描述非常長，建議整理關鍵點並建立結構化的執行清單"
+        "Task description is very long, recommend organizing key points and creating a structured execution list"
       );
     }
     if (dependenciesCount >= TaskComplexityThresholds.DEPENDENCIES_COUNT.HIGH) {
       recommendations.push(
-        "依賴任務數量過多，建議重新評估任務邊界，確保任務切分合理"
+        "Too many dependent tasks, recommend reassessing task boundaries to ensure reasonable task division"
       );
     }
   }
@@ -666,37 +666,37 @@ export async function assessTaskComplexity(
   };
 }
 
-// 清除所有任務
+// Clear all tasks
 export async function clearAllTasks(): Promise<{
   success: boolean;
   message: string;
   backupFile?: string;
 }> {
   try {
-    // 確保數據目錄存在
+    // Ensure data directory exists
     await ensureDataDir();
 
-    // 讀取現有任務
+    // Read existing tasks
     const allTasks = await readTasks();
 
-    // 如果沒有任務，直接返回
+    // If no tasks exist, return directly
     if (allTasks.length === 0) {
-      return { success: true, message: "沒有任務需要清除" };
+      return { success: true, message: "No tasks to clear" };
     }
 
-    // 篩選出已完成的任務
+    // Filter out completed tasks
     const completedTasks = allTasks.filter(
       (task) => task.status === TaskStatus.COMPLETED
     );
 
-    // 創建備份文件名
+    // Create backup filename
     const timestamp = new Date()
       .toISOString()
       .replace(/:/g, "-")
       .replace(/\..+/, "");
     const backupFileName = `tasks_memory_${timestamp}.json`;
 
-    // 確保 memory 目錄存在
+    // Ensure memory directory exists
     const MEMORY_DIR = path.join(DATA_DIR, "memory");
     try {
       await fs.access(MEMORY_DIR);
@@ -704,27 +704,27 @@ export async function clearAllTasks(): Promise<{
       await fs.mkdir(MEMORY_DIR, { recursive: true });
     }
 
-    // 創建 memory 目錄下的備份路徑
+    // Create backup path in memory directory
     const memoryFilePath = path.join(MEMORY_DIR, backupFileName);
 
-    // 同時寫入到 memory 目錄 (只包含已完成的任務)
+    // Write to memory directory (only includes completed tasks)
     await fs.writeFile(
       memoryFilePath,
       JSON.stringify({ tasks: completedTasks }, null, 2)
     );
 
-    // 清空任務文件
+    // Clear tasks file
     await writeTasks([]);
 
     return {
       success: true,
-      message: `已成功清除所有任務，共 ${allTasks.length} 個任務被刪除，已備份 ${completedTasks.length} 個已完成的任務至 memory 目錄`,
+      message: `Successfully cleared all tasks, ${allTasks.length} tasks deleted, ${completedTasks.length} completed tasks backed up to memory directory`,
       backupFile: backupFileName,
     };
   } catch (error) {
     return {
       success: false,
-      message: `清除任務時發生錯誤: ${
+      message: `Error occurred while clearing tasks: ${
         error instanceof Error ? error.message : String(error)
       }`,
     };
@@ -878,10 +878,10 @@ export async function searchTasksWithCommand(
     return b.updatedAt.getTime() - a.updatedAt.getTime();
   });
 
-  // 分頁處理
+  // Pagination processing
   const totalResults = allTasks.length;
   const totalPages = Math.ceil(totalResults / pageSize);
-  const safePage = Math.max(1, Math.min(page, totalPages || 1)); // 確保頁碼有效
+  const safePage = Math.max(1, Math.min(page, totalPages || 1)); // Ensure page number is valid
   const startIndex = (safePage - 1) * pageSize;
   const endIndex = Math.min(startIndex + pageSize, totalResults);
   const paginatedTasks = allTasks.slice(startIndex, endIndex);
@@ -897,40 +897,40 @@ export async function searchTasksWithCommand(
   };
 }
 
-// 根據平台生成適當的搜尋命令
+// Generate appropriate search command based on platform
 function generateSearchCommand(
   query: string,
   isId: boolean,
   memoryDir: string
 ): string {
-  // 安全地轉義用戶輸入
+  // Safely escape user input
   const safeQuery = escapeShellArg(query);
   const keywords = safeQuery.split(/\s+/).filter((k) => k.length > 0);
 
-  // 檢測操作系統類型
+  // Detect operating system type
   const isWindows = process.platform === "win32";
 
   if (isWindows) {
-    // Windows環境，使用findstr命令
+    // Windows environment, use findstr command
     if (isId) {
-      // ID搜尋
+      // ID search
       return `findstr /s /i /c:"${safeQuery}" "${memoryDir}\\*.json"`;
     } else if (keywords.length === 1) {
-      // 單一關鍵字
+      // Single keyword
       return `findstr /s /i /c:"${safeQuery}" "${memoryDir}\\*.json"`;
     } else {
-      // 多關鍵字搜尋 - Windows中使用PowerShell
+      // Multiple keyword search - Use PowerShell in Windows
       const keywordPatterns = keywords.map((k) => `'${k}'`).join(" -and ");
       return `powershell -Command "Get-ChildItem -Path '${memoryDir}' -Filter *.json -Recurse | Select-String -Pattern ${keywordPatterns} | ForEach-Object { $_.Path }"`;
     }
   } else {
-    // Unix/Linux/MacOS環境，使用grep命令
+    // Unix/Linux/MacOS environment, use grep command
     if (isId) {
       return `grep -r --include="*.json" "${safeQuery}" "${memoryDir}"`;
     } else if (keywords.length === 1) {
       return `grep -r --include="*.json" "${safeQuery}" "${memoryDir}"`;
     } else {
-      // 多關鍵字用管道連接多個grep命令
+      // Multiple keywords use pipe to connect multiple grep commands
       const firstKeyword = escapeShellArg(keywords[0]);
       const otherKeywords = keywords.slice(1).map((k) => escapeShellArg(k));
 
@@ -944,18 +944,18 @@ function generateSearchCommand(
 }
 
 /**
- * 安全地轉義shell參數，防止命令注入
+ * Safely escape shell arguments to prevent command injection
  */
 function escapeShellArg(arg: string): string {
   if (!arg) return "";
 
-  // 移除所有控制字符和特殊字符
+  // Remove all control characters and special characters
   return arg
-    .replace(/[\x00-\x1F\x7F]/g, "") // 控制字符
-    .replace(/[&;`$"'<>|]/g, ""); // Shell 特殊字符
+    .replace(/[\x00-\x1F\x7F]/g, "") // Control characters
+    .replace(/[&;`$"'<>|]/g, ""); // Shell special characters
 }
 
-// 過濾當前任務列表
+// Filter current task list
 function filterCurrentTasks(
   tasks: Task[],
   query: string,
