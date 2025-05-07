@@ -1,5 +1,5 @@
 /**
- * MCP Shrimp Task Manager 網站主腳本
+ * MCP Prawn Task Manager 網站主腳本
  */
 
 // 頁面加載完成後執行

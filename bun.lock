@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "mcp-shrimp-task-manager",
+      "name": "mcp-prawn-task-manager",
       "dependencies": {
         "@modelcontextprotocol/sdk": "^1.0.0",
         "dotenv": "^16.5.0",

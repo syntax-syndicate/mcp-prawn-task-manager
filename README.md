@@ -1,6 +1,15 @@
-[English](README.md) | [中文](docs/zh/README.md)
+[English](README.md) | ~~[中文](docs/zh/README.md)~~ forked , fixed, owned
 
-## 目錄
+
+
+    ![Logo](./logo.png)
+
+
+all non english instruction, descriptions, removed, what was missing in translation is now translated. no more tasks generated in language that i have no idea how to read. 🤷🏻‍♀️
+
+  > to run just need bun and add as server run.sh with dir to store data as first param.
+
+## 📖 🚀
 
 - [✨ Features](#features1)
 - [🧭 Usage Guide](#usage-guide)
@@ -15,19 +24,19 @@
 - [📄 License](#license)
 - [🤖 Recommended Models](#recommended)
 
-# MCP Shrimp Task Manager
+# MCP Prawn Task Manager
 
-[![Shrimp Task Manager Demo](/docs/yt.png)](https://www.youtube.com/watch?v=Arzu0lV09so)
+[![Prawn Task Manager Demo](/docs/yt.png)](https://www.youtube.com/watch?v=Arzu0lV09so)
 
-[![smithery badge](https://smithery.ai/badge/@mi4uu/mcp-shrimp-task-manager)](https://smithery.ai/server/@mi4uu/mcp-shrimp-task-manager)
+[![smithery badge](https://smithery.ai/badge/@mi4uu/mcp-prawn-task-manager)](https://smithery.ai/server/@mi4uu/mcp-prawn-task-manager)
 
 > 🚀 An intelligent task management system based on Model Context Protocol (MCP), providing an efficient programming workflow framework for AI Agents.
 
-<a href="https://glama.ai/mcp/servers/@mi4uu/mcp-shrimp-task-manager">
-  <img width="380" height="200" src="https://glama.ai/mcp/servers/@mi4uu/mcp-shrimp-task-manager/badge" alt="Shrimp Task Manager MCP server" />
+<a href="https://glama.ai/mcp/servers/@mi4uu/mcp-prawn-task-manager">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@mi4uu/mcp-prawn-task-manager/badge" alt="Prawn Task Manager MCP server" />
 </a>
 
-Shrimp Task Manager guides Agents through structured workflows for systematic programming, enhancing task memory management mechanisms, and effectively avoiding redundant and repetitive coding work.
+Prawn Task Manager guides Agents through structured workflows for systematic programming, enhancing task memory management mechanisms, and effectively avoiding redundant and repetitive coding work.
 
 ## ✨ <a id="features1"></a>Features
 
@@ -44,11 +53,11 @@ Shrimp Task Manager guides Agents through structured workflows for systematic pr
 
 ## 🧭 <a id="usage-guide"></a>Usage Guide
 
-Shrimp Task Manager offers a structured approach to AI-assisted programming through guided workflows and systematic task management.
+Prawn Task Manager offers a structured approach to AI-assisted programming through guided workflows and systematic task management.
 
-### What is Shrimp?
+### What is Prawn?
 
-Shrimp is essentially a prompt template that guides AI Agents to better understand and work with your project. It uses a series of prompts to ensure the Agent aligns closely with your project's specific needs and conventions.
+Prawn is essentially a prompt template that guides AI Agents to better understand and work with your project. It uses a series of prompts to ensure the Agent aligns closely with your project's specific needs and conventions.
 
 ### First-Time Setup
 
@@ -60,7 +69,7 @@ To develop or update features, use the command "plan task [your description]". T
 
 ### Feedback Mechanism
 
-During the planning process, Shrimp guides the Agent through multiple steps of thinking. You can review this process and provide feedback if you feel it's heading in the wrong direction. Simply interrupt and share your perspective - the Agent will incorporate your feedback and continue the planning process.
+During the planning process, Prawn guides the Agent through multiple steps of thinking. You can review this process and provide feedback if you feel it's heading in the wrong direction. Simply interrupt and share your perspective - the Agent will incorporate your feedback and continue the planning process.
 
 ### Task Execution
 
@@ -80,7 +89,7 @@ You can switch the language of system prompts by setting the `TEMPLATES_USE` env
 
 ## 🧠 <a id="task-memory-function"></a>Task Memory Function
 
-Shrimp Task Manager has long-term memory capabilities, automatically saving task execution history and providing reference experiences when planning new tasks.
+Prawn Task Manager has long-term memory capabilities, automatically saving task execution history and providing reference experiences when planning new tasks.
 
 ### Key Features
 
@@ -132,10 +141,10 @@ This tool is particularly valuable when your codebase expands or undergoes signi
 
 ### Installing via Smithery
 
-To install Shrimp Task Manager for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@mi4uu/mcp-shrimp-task-manager):
+To install Prawn Task Manager for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@mi4uu/mcp-prawn-task-manager):
 
 ```bash
-npx -y @smithery/cli install @mi4uu/mcp-shrimp-task-manager --client claude
+npx -y @smithery/cli install @mi4uu/mcp-prawn-task-manager --client claude
 ```
 
 ### Manual Installation
@@ -150,11 +159,11 @@ npm run build
 
 ## 🔌 <a id="clients"></a>Using with MCP-Compatible Clients
 
-Shrimp Task Manager can be used with any client that supports the Model Context Protocol, such as Cursor IDE.
+Prawn Task Manager can be used with any client that supports the Model Context Protocol, such as Cursor IDE.
 
 ### Configuration in Cursor IDE
 
-Shrimp Task Manager offers two configuration methods: global configuration and project-specific configuration.
+Prawn Task Manager offers two configuration methods: global configuration and project-specific configuration.
 
 #### Global Configuration
 
@@ -164,9 +173,9 @@ Shrimp Task Manager offers two configuration methods: global configuration and p
 ```json
 {
   "mcpServers": {
-    "shrimp-task-manager": {
+    "prawn-task-manager": {
       "command": "node",
-      "args": ["/mcp-shrimp-task-manager/dist/index.js"],
+      "args": ["/mcp-prawn-task-manager/dist/index.js"],
       "env": {
         "DATA_DIR": "/path/to/project/data", // 必須使用絕對路徑
         "TEMPLATES_USE": "en",
@@ -181,11 +190,11 @@ or
 
 {
   "mcpServers": {
-    "shrimp-task-manager": {
+    "prawn-task-manager": {
       "command": "npx",
-      "args": ["-y", "mcp-shrimp-task-manager"],
+      "args": ["-y", "mcp-prawn-task-manager"],
       "env": {
-        "DATA_DIR": "/mcp-shrimp-task-manager/data",
+        "DATA_DIR": "/mcp-prawn-task-manager/data",
         "TEMPLATES_USE": "en",
         "ENABLE_GUI": "false"
       }
@@ -194,7 +203,7 @@ or
 }
 ```
 
-> ⚠️ Please replace `/mcp-shrimp-task-manager` with your actual path.
+> ⚠️ Please replace `/mcp-prawn-task-manager` with your actual path.
 
 #### Project-Specific Configuration
 
@@ -206,9 +215,9 @@ You can also set up dedicated configurations for each project to use independent
 ```json
 {
   "mcpServers": {
-    "shrimp-task-manager": {
+    "prawn-task-manager": {
       "command": "node",
-      "args": ["/path/to/mcp-shrimp-task-manager/dist/index.js"],
+      "args": ["/path/to/mcp-prawn-task-manager/dist/index.js"],
       "env": {
         "DATA_DIR": "/path/to/project/data", // Must use absolute path
         "TEMPLATES_USE": "en",
@@ -223,9 +232,9 @@ or
 
 {
   "mcpServers": {
-    "shrimp-task-manager": {
+    "prawn-task-manager": {
       "command": "npx",
-      "args": ["-y", "mcp-shrimp-task-manager"],
+      "args": ["-y", "mcp-prawn-task-manager"],
       "env": {
         "DATA_DIR": "/path/to/project/data", // Must use absolute path
         "TEMPLATES_USE": "en",
@@ -238,7 +247,7 @@ or
 
 ### ⚠️ Important Configuration Notes
 
-The **DATA_DIR parameter** is the directory where Shrimp Task Manager stores task data, conversation logs, and other information. Setting this parameter correctly is crucial for the normal operation of the system. This parameter must use an **absolute path**; using a relative path may cause the system to incorrectly locate the data directory, resulting in data loss or function failure.
+The **DATA_DIR parameter** is the directory where Prawn Task Manager stores task data, conversation logs, and other information. Setting this parameter correctly is crucial for the normal operation of the system. This parameter must use an **absolute path**; using a relative path may cause the system to incorrectly locate the data directory, resulting in data loss or function failure.
 
 > **Warning**: Using relative paths may cause the following issues:
 >
@@ -249,14 +258,14 @@ The **DATA_DIR parameter** is the directory where Shrimp Task Manager stores tas
 
 ### 🔧 Environment Variable Configuration
 
-Shrimp Task Manager supports customizing prompt behavior through environment variables, allowing you to fine-tune AI assistant responses without modifying code. You can set these variables in the configuration or through an `.env` file:
+Prawn Task Manager supports customizing prompt behavior through environment variables, allowing you to fine-tune AI assistant responses without modifying code. You can set these variables in the configuration or through an `.env` file:
 
 ```json
 {
   "mcpServers": {
-    "shrimp-task-manager": {
+    "prawn-task-manager": {
       "command": "node",
-      "args": ["/path/to/mcp-shrimp-task-manager/dist/index.js"],
+      "args": ["/path/to/mcp-prawn-task-manager/dist/index.js"],
       "env": {
         "DATA_DIR": "/path/to/project/data",
         "MCP_PROMPT_PLAN_TASK": "Custom planning guidance...",
@@ -358,4 +367,4 @@ Due to differences in training methods and understanding capabilities across mod
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=mi4uu/mcp-shrimp-task-manager&type=Timeline)](https://www.star-history.com/#mi4uu/mcp-shrimp-task-manager&Timeline)
+[![Star History Chart](https://api.star-history.com/svg?repos=mi4uu/mcp-prawn-task-manager&type=Timeline)](https://www.star-history.com/#mi4uu/mcp-prawn-task-manager&Timeline)

@@ -18,7 +18,7 @@ Where `[FUNCTION_NAME]` is the name of the tool function in uppercase. For examp
 
 ## Multi-language Prompt Templates
 
-Shrimp Task Manager supports prompt templates in multiple languages, configurable via the `TEMPLATES_USE` environment variable:
+Prawn Task Manager supports prompt templates in multiple languages, configurable via the `TEMPLATES_USE` environment variable:
 
 - Currently supported languages: `en` (English) and `zh` (Traditional Chinese)
 - Default is `en` (English)
@@ -102,9 +102,9 @@ You can also set environment variables directly in the Cursor IDE's `mcp.json` c
 ```json
 {
   "mcpServers": {
-    "shrimp-task-manager": {
+    "prawn-task-manager": {
       "command": "node",
-      "args": ["/path/to/mcp-shrimp-task-manager/dist/index.js"],
+      "args": ["/path/to/mcp-prawn-task-manager/dist/index.js"],
       "env": {
         "DATA_DIR": "/path/to/project/data",
         "MCP_PROMPT_PLAN_TASK": "Custom task planning prompt",

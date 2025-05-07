@@ -2,7 +2,7 @@
 FROM node:lts-alpine
 
 # Create app directory
-WORKDIR /mcp-shrimp-task-manager
+WORKDIR /mcp-prawn-task-manager
 
 # Install app dependencies
 COPY package*.json ./
