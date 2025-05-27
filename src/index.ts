@@ -448,6 +448,8 @@ async function main() {
     await server.connect(transport);
 
     console.log("Prawn Task Manager service started");
+     const port = await getPort();
+    console.log(  `[Task Manager UI](http://localhost:${port})`);
   } catch (error) {
     process.exit(1);
   }

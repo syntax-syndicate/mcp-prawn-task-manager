@@ -33,7 +33,7 @@ export async function ensureRulesFileExists(): Promise<void> {
     await fs.mkdir(path.dirname(dataRulesPath), { recursive: true });
     await fs.writeFile(
       dataRulesPath,
-      "# 開發守則\n\n請在此文件中定義專案規範。",
+      "# Development Guidelines\n\nPlease define your project specifications in this file.",
       "utf-8"
     );
   }
